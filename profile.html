@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; frame-src 'self' https://www.youtube.com; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenya Creators- Profile</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            800: '#86198f',
+                            900: '#701a75',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .slide-in {
+            animation: slide-in 0.3s ease-out;
+        }
+
+        @keyframes slide-in {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .notification-animation {
+            animation: fade-in-out 5s forwards;
+        }
+
+        @keyframes fade-in-out {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            90% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
+        }
+
+        .progress-bar-animation {
+            background-image: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.5) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            background-size: 200% 100%;
+            animation: progress-shine 2s infinite;
+        }
+
+        @keyframes progress-shine {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+    <div id="result"></div>
+
+    <script>
+        // Configure default toastr options
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "timeOut": "5000"
+        };
+
+        function fetchRandomName() {
+            $.ajax({
+                url: 'msg.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    toastr.success(response.name, "Payment success");
+                }
+            });
+        }
+
+        // When document is ready
+        $(document).ready(function() {
+
+            // Initial call for payment notification
+            setTimeout(function() {
+                fetchRandomName();
+            }, 3000); // First payment notification after 3 seconds
+
+            // Set interval to call every 25 seconds
+            setInterval(fetchRandomName, 16000);
+        });
+    </script>
+</head>
+
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Notification area for messages -->
+    
+            <!-- Main App Layout for logged in users -->
+        <div class="flex min-h-screen">
+            <!-- Sidebar for Desktop -->
+            <div class="hidden lg:flex lg:w-64 flex-col bg-white border-r border-gray-200">
+                <div class="p-4 border-b border-gray-200">
+                    <a href="index.html" class="text-2xl font-bold text-primary-600">Kenya Creators</a>
+                </div>
+                <div class="py-4 flex-grow">
+                    <ul>
+                        <li class="mb-1">
+                            <a href="dashboard.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                                <i class="fas fa-home mr-3"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="videos.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                                <i class="fas fa-play-circle mr-3"></i>
+                                <span>Videos</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="tasks.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                                <i class="fas fa-tasks mr-3"></i>
+                                <span>Tasks</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="withdraw.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                                <i class="fas fa-wallet mr-3"></i>
+                                <span>Withdraw</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="profile.html" class="w-full flex items-center py-3 px-4 text-primary-600 bg-primary-50 rounded-md">
+                                <i class="fas fa-user mr-3"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="referrals.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                                <i class="fas fa-users mr-3"></i>
+                                <span>Referrals</span>
+                            </a>
+                        </li>
+
+                                            </ul>
+                </div>
+                <div class="p-4 border-t border-gray-200">
+                    <a href="auth/logout.html" class="w-full flex items-center py-2 px-4 text-gray-600 hover:bg-gray-100 rounded-md">
+                        <i class="fas fa-sign-out-alt mr-3"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 flex flex-col overflow-hidden">
+                <!-- Header -->
+                <header class="bg-white shadow-sm border-b border-gray-200">
+                    <div class="flex items-center justify-between p-4">
+                        <div class="flex items-center">
+                            <button class="lg:hidden mr-4 text-gray-600" id="menu-toggle" aria-label="Toggle menu">
+                                <i class="fas fa-bars text-xl"></i>
+                            </button>
+                            <h1 class="text-xl font-bold text-primary-600 lg:hidden">TrendPay Media</h1>
+                            <h2 class="text-xl font-semibold text-gray-800 hidden lg:block">Profile</h2>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <button class="relative p-1 text-gray-600 hover:text-primary-600" aria-label="Notifications">
+                                <i class="fas fa-bell text-xl"></i>
+                                <span class="absolute top-0 right-0 h-4 w-4 rounded-full bg-red-500 text-xs text-white flex items-center justify-center">3</span>
+                            </button>
+                            <div class="relative">
+                                <a href="profile.html" class="flex items-center text-gray-600 hover:text-primary-600">
+                                    <img src="assets/images/profile.svg" alt="User" class="w-8 h-8 rounded-full">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Mobile Navigation -->
+                <div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg lg:hidden z-50">
+                    <div class="flex justify-around">
+                        <a href="dashboard.html" class="flex flex-col items-center p-3 w-1/5 text-gray-500">
+                            <i class="fas fa-home text-xl"></i>
+                            <span class="text-xs mt-1">Home</span>
+                        </a>
+                        <a href="videos.html" class="flex flex-col items-center p-3 w-1/5 text-gray-500">
+                            <i class="fas fa-play-circle text-xl"></i>
+                            <span class="text-xs mt-1">Videos</span>
+                        </a>
+                        <a href="tasks.html" class="flex flex-col items-center p-3 w-1/5 text-gray-500">
+                            <i class="fas fa-tasks text-xl"></i>
+                            <span class="text-xs mt-1">Tasks</span>
+                        </a>
+                        <a href="withdraw.html" class="flex flex-col items-center p-3 w-1/5 text-gray-500">
+                            <i class="fas fa-wallet text-xl"></i>
+                            <span class="text-xs mt-1">Withdraw</span>
+                        </a>
+                        <a href="profile.html" class="flex flex-col items-center p-3 w-1/5 text-primary-600">
+                            <i class="fas fa-user text-xl"></i>
+                            <span class="text-xs mt-1">Profile</span>
+                        </a>
+                    </div>
+                </div>
+            
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    /* Enhanced input styling */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    select,
+    textarea {
+        padding: 0.75rem 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        width: 100%;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        transition: all 0.15s ease-in-out;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="tel"]:focus,
+    select:focus,
+    textarea:focus {
+        border-color: #0ea5e9;
+        box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        outline: none;
+    }
+
+    /* Improved text contrast */
+    .text-gray-500 {
+        color: #6b7280;
+    }
+
+    .text-gray-600 {
+        color: #4b5563;
+    }
+
+    /* Enhanced form labels */
+    .form-label {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: #374151;
+    }
+
+    /* Input with icon padding */
+    .input-with-icon {
+        padding-left: 2.5rem !important;
+    }
+
+    /* Custom select styling */
+    select {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.75rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+</style>
+
+<main class="flex-1 overflow-y-auto bg-gray-50 px-4 py-4 pb-20 lg:pb-4">
+    <!-- Page Header -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800">My Profile</h1>
+            <p class="text-gray-600">View and update your account information</p>
+        </div>
+        <div class="mt-4 md:mt-0 bg-white rounded-lg shadow-sm p-4 text-center">
+            <p class="text-sm text-gray-600 mb-1">Current Balance</p>
+            <h2 class="text-2xl font-bold text-primary-600">KSh 0.00</h2>
+                        <p class="text-xs text-gray-500 mt-1">Currency: KES</p>
+                    </div>
+    </div>
+    
+    <!-- Profile Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Left Column (Profile Info & Stats) -->
+        <div class="lg:col-span-2">
+            <!-- Account Stats -->
+            <div class="bg-white rounded-lg shadow-md p-5 mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Account Overview</h3>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-50 p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-primary-600 mb-1">0</div>
+                        <div class="text-sm text-gray-600">Videos Watched</div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-secondary-600 mb-1">0</div>
+                        <div class="text-sm text-gray-600">Tasks Completed</div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-blue-600 mb-1">0</div>
+                        <div class="text-sm text-gray-600">Referrals</div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-green-600 mb-1">0</div>
+                        <div class="text-sm text-gray-600">Withdrawals</div>
+                    </div>
+                </div>
+                
+                <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <p class="text-sm text-gray-600 mb-1">Account Level</p>
+                        <div class="flex items-center">
+                            <div class="bg-primary-100 text-primary-800 inline-flex rounded-full px-3 py-1 text-sm font-medium mr-2">
+                                                                Level 1 (Starter)
+                                                            </div>
+                                                        <span class="text-sm text-gray-600">
+                                Next: Level 2                            </span>
+                                                    </div>
+                        
+                                                <div class="mt-4 space-y-3">
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs text-gray-600">Videos Watched</span>
+                                    <span class="text-xs text-gray-600">0/5</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-primary-500 h-2.5 rounded-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs text-gray-600">Tasks Completed</span>
+                                    <span class="text-xs text-gray-600">0/2</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-secondary-500 h-2.5 rounded-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                                                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-2 mt-2">
+                                <p class="text-xs text-yellow-800">
+                                    <i class="fas fa-award mr-1"></i> Level up bonus: KSh 390.00                                </p>
+                            </div>
+                                                    </div>
+                                            </div>
+                    
+                    <div>
+                        <p class="text-sm text-gray-600 mb-1">Account Info</p>
+                        <ul class="text-sm text-gray-800 space-y-1">
+                            <li>Username: <span class="font-medium">Sigeyh</span></li>
+                                                        <li>Country: <span class="font-medium">🇰🇪 Kenya</span></li>
+                                                        <li>Member since: <span class="font-medium">April 5, 2025</span></li>
+                            <li>Last login: <span class="font-medium">April 7, 3647 9:47 pm</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <hr class="my-5 border-gray-200">
+                
+                <h4 class="text-base font-semibold text-gray-800 mb-3">Earnings Breakdown</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="flex flex-col">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-sm text-gray-600">Videos</span>
+                            <span class="text-sm font-medium text-gray-800">KSh 0.00</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                                        <div class="bg-purple-500 h-2 rounded-full" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-sm text-gray-600">Tasks</span>
+                            <span class="text-sm font-medium text-gray-800">KSh 0.00</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                                        <div class="bg-blue-500 h-2 rounded-full" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-sm text-gray-600">Referrals</span>
+                            <span class="text-sm font-medium text-gray-800">KSh 0.00</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                                        <div class="bg-blue-500 h-2 rounded-full" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-sm text-gray-600">Bonuses</span>
+                        <span class="text-sm font-medium text-gray-800">KSh 0.00</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile Edit Form -->
+            <div class="bg-white rounded-lg shadow-md p-5 mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Personal Information</h3>
+                
+                <form action="profile.html" method="POST">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                            <input type="text" id="username" value="Sigeyh" class="block w-full bg-gray-100 border-gray-300 rounded-md shadow-sm text-gray-500 cursor-not-allowed" readonly>
+                            <p class="text-xs text-gray-500 mt-1">Username cannot be changed</p>
+                        </div>
+                        
+                        <div>
+                            <label for="full_name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" id="full_name" name="full_name" value="Rodney Sigeyh" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                                                    </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" name="email" value="rsigeyh28@gmail.com" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                                                    </div>
+                        
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number (Optional)</label>
+                            <input type="text" id="phone" name="phone" value="" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                        </div>
+                        
+                        <div>
+                            <label for="country_id" class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                            <select id="country_id" name="country_id" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                                <option value="">Select a country</option>
+                                                                    <option value="5" >
+                                        Algeria (DZ)
+                                    </option>
+                                                                    <option value="6" >
+                                        Angola (AO)
+                                    </option>
+                                                                    <option value="7" >
+                                        Benin (BJ)
+                                    </option>
+                                                                    <option value="8" >
+                                        Botswana (BW)
+                                    </option>
+                                                                    <option value="9" >
+                                        Burkina Faso (BF)
+                                    </option>
+                                                                    <option value="10" >
+                                        Burundi (BI)
+                                    </option>
+                                                                    <option value="11" >
+                                        Cameroon (CM)
+                                    </option>
+                                                                    <option value="12" >
+                                        Cape Verde (CV)
+                                    </option>
+                                                                    <option value="13" >
+                                        Central African Republic (CF)
+                                    </option>
+                                                                    <option value="14" >
+                                        Chad (TD)
+                                    </option>
+                                                                    <option value="15" >
+                                        Comoros (KM)
+                                    </option>
+                                                                    <option value="16" >
+                                        Congo (CG)
+                                    </option>
+                                                                    <option value="18" >
+                                        Djibouti (DJ)
+                                    </option>
+                                                                    <option value="17" >
+                                        DR Congo (CD)
+                                    </option>
+                                                                    <option value="19" >
+                                        Egypt (EG)
+                                    </option>
+                                                                    <option value="20" >
+                                        Equatorial Guinea (GQ)
+                                    </option>
+                                                                    <option value="21" >
+                                        Eritrea (ER)
+                                    </option>
+                                                                    <option value="22" >
+                                        Eswatini (SZ)
+                                    </option>
+                                                                    <option value="23" >
+                                        Ethiopia (ET)
+                                    </option>
+                                                                    <option value="3" >
+                                        European Union (EU)
+                                    </option>
+                                                                    <option value="24" >
+                                        Gabon (GA)
+                                    </option>
+                                                                    <option value="25" >
+                                        Gambia (GM)
+                                    </option>
+                                                                    <option value="26" >
+                                        Ghana (GH)
+                                    </option>
+                                                                    <option value="27" >
+                                        Guinea (GN)
+                                    </option>
+                                                                    <option value="28" >
+                                        Guinea-Bissau (GW)
+                                    </option>
+                                                                    <option value="29" >
+                                        Ivory Coast (CI)
+                                    </option>
+                                                                    <option value="4" >
+                                        Japan (JP)
+                                    </option>
+                                                                    <option value="30" selected>
+                                        Kenya (KE)
+                                    </option>
+                                                                    <option value="31" >
+                                        Lesotho (LS)
+                                    </option>
+                                                                    <option value="32" >
+                                        Liberia (LR)
+                                    </option>
+                                                                    <option value="33" >
+                                        Libya (LY)
+                                    </option>
+                                                                    <option value="34" >
+                                        Madagascar (MG)
+                                    </option>
+                                                                    <option value="35" >
+                                        Malawi (MW)
+                                    </option>
+                                                                    <option value="36" >
+                                        Mali (ML)
+                                    </option>
+                                                                    <option value="37" >
+                                        Mauritania (MR)
+                                    </option>
+                                                                    <option value="38" >
+                                        Mauritius (MU)
+                                    </option>
+                                                                    <option value="39" >
+                                        Morocco (MA)
+                                    </option>
+                                                                    <option value="40" >
+                                        Mozambique (MZ)
+                                    </option>
+                                                                    <option value="41" >
+                                        Namibia (NA)
+                                    </option>
+                                                                    <option value="42" >
+                                        Niger (NE)
+                                    </option>
+                                                                    <option value="43" >
+                                        Nigeria (NG)
+                                    </option>
+                                                                    <option value="44" >
+                                        Rwanda (RW)
+                                    </option>
+                                                                    <option value="45" >
+                                        Sao Tome and Principe (ST)
+                                    </option>
+                                                                    <option value="46" >
+                                        Senegal (SN)
+                                    </option>
+                                                                    <option value="47" >
+                                        Seychelles (SC)
+                                    </option>
+                                                                    <option value="48" >
+                                        Sierra Leone (SL)
+                                    </option>
+                                                                    <option value="49" >
+                                        Somalia (SO)
+                                    </option>
+                                                                    <option value="50" >
+                                        South Africa (ZA)
+                                    </option>
+                                                                    <option value="51" >
+                                        South Sudan (SS)
+                                    </option>
+                                                                    <option value="52" >
+                                        Sudan (SD)
+                                    </option>
+                                                                    <option value="53" >
+                                        Tanzania (TZ)
+                                    </option>
+                                                                    <option value="54" >
+                                        Togo (TG)
+                                    </option>
+                                                                    <option value="55" >
+                                        Tunisia (TN)
+                                    </option>
+                                                                    <option value="56" >
+                                        Uganda (UG)
+                                    </option>
+                                                                    <option value="2" >
+                                        United Kingdom (GB)
+                                    </option>
+                                                                    <option value="1" >
+                                        United States (US)
+                                    </option>
+                                                                    <option value="57" >
+                                        Zambia (ZM)
+                                    </option>
+                                                                    <option value="58" >
+                                        Zimbabwe (ZW)
+                                    </option>
+                                                            </select>
+                                                    </div>
+                    </div>
+                    
+                    <h4 class="text-base font-semibold text-gray-800 mb-3">Payment Information</h4>
+                    <div class="mb-6">
+                        <label for="payment_method" class="block text-sm font-medium text-gray-700 mb-1">Preferred Payment Method</label>
+                        <select id="payment_method" name="payment_method" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                            <option value="">Select a payment method</option>
+                            <option value="paypal" >PayPal</option>
+                            <option value="bank_transfer" >Bank Transfer</option>
+                            <option value="crypto" >Cryptocurrency</option>
+                            <option value="mobile_money" >Mobile Money</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="payment_details" class="block text-sm font-medium text-gray-700 mb-1">Payment Details</label>
+                        <textarea id="payment_details" name="payment_details" rows="3" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500" placeholder="Enter your payment details (e.g., PayPal email, bank account details, crypto wallet address)"></textarea>
+                        <p class="text-xs text-gray-500 mt-1">This information will be used to process your withdrawal requests</p>
+                    </div>
+                    
+                    <div class="flex justify-end">
+                        <button type="submit" name="update_profile" class="bg-primary-500 text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-primary-600 transition">
+                            Update Profile
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Right Column (Password Change, etc.) -->
+        <div>
+            <!-- Change Password Card -->
+            <div class="bg-white rounded-lg shadow-md p-5 mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Change Password</h3>
+                
+                <form action="profile.html" method="POST">
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label for="current_password" class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+                            <input type="password" id="current_password" name="current_password" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                                                    </div>
+                        
+                        <div>
+                            <label for="new_password" class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                            <input type="password" id="new_password" name="new_password" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                                                    </div>
+                        
+                        <div>
+                            <label for="confirm_password" class="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
+                            <input type="password" id="confirm_password" name="confirm_password" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                                                    </div>
+                    </div>
+                    
+                    <div class="flex justify-end">
+                        <button type="submit" name="change_password" class="bg-gray-800 text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-gray-900 transition">
+                            Change Password
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Account Security Card -->
+            <div class="bg-white rounded-lg shadow-md p-5 mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Account Security</h3>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-800">Email Verification</p>
+                            <p class="text-xs text-gray-600">Verify your email for enhanced security</p>
+                        </div>
+                        <span class="inline-flex px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">
+                            Not Verified                        </span>
+                    </div>
+                    
+                                        <div class="text-center">
+                        <a href="verify-email.php" class="inline-block text-primary-600 hover:text-primary-700 text-sm">Send Verification Email</a>
+                    </div>
+                                        
+                    <hr class="border-gray-200">
+                    
+                    <div>
+                        <p class="text-sm font-medium text-gray-800">Last Login</p>
+                        <p class="text-xs text-gray-600">
+                            April 7, 3647 9:47 pm<br>
+                            IP: 102.0.14.30                        </p>
+                    </div>
+                    
+                    <hr class="border-gray-200">
+                    
+                    <div class="mt-6 space-y-4">
+                        <h3 class="text-sm font-semibold text-gray-800">Account Actions</h3>
+                        <div class="space-y-3 text-sm">
+                            <a href="change_password.php" class="block text-sm text-primary-600 hover:text-primary-700">
+                                <i class="fas fa-key mr-2"></i> Change Password
+                            </a>
+                            <a href="#" id="delete-account-btn" class="block text-sm text-red-600 hover:text-red-700">
+                                <i class="fas fa-trash-alt mr-2"></i> Delete Account
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    // Add any JavaScript for the profile page here
+</script>
+
+        </div> <!-- Close main content div -->
+    </div> <!-- Close the flex container -->
+
+
+<!-- Scripts -->
+<script>
+    // Toggle mobile menu
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                const sidebar = document.querySelector('.lg\\:flex.lg\\:w-64');
+                if (sidebar.classList.contains('hidden')) {
+                    sidebar.classList.remove('hidden');
+                    sidebar.classList.add('fixed', 'inset-0', 'z-40', 'slide-in', 'w-64');
+                } else {
+                    sidebar.classList.add('hidden');
+                    sidebar.classList.remove('fixed', 'inset-0', 'z-40', 'slide-in', 'w-64');
+                }
+            });
+        }
+        
+        // Auto-hide notifications after 5 seconds
+        const notifications = document.querySelectorAll('.notification-animation');
+        notifications.forEach(notification => {
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        });
+    });
+</script>
+</body>
+</html>  

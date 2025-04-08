@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; frame-src 'self' https://www.youtube.com; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenya Creators - Videos</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            800: '#86198f',
+                            900: '#701a75',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .slide-in {
+            animation: slide-in 0.3s ease-out;
+        }
+
+        @keyframes slide-in {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .notification-animation {
+            animation: fade-in-out 5s forwards;
+        }
+
+        @keyframes fade-in-out {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            90% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
+        }
+
+        .progress-bar-animation {
+            background-image: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.5) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            background-size: 200% 100%;
+            animation: progress-shine 2s infinite;
+        }
+
+        @keyframes progress-shine {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <div id="result"></div>
+
+    <script>
+        // Configure default toastr options
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "timeOut": "5000"
+        };
+
+        function fetchRandomName() {
+            $.ajax({
+                url: 'msg.html',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    toastr.success(response.name, "Payment success");
+                }
+            });
+        }
+
+        // When document is ready
+        $(document).ready(function() {
+            // Initial call for payment notification
+            setTimeout(function() {
+                fetchRandomName();
+            }, 3000); // First payment notification after 3 seconds
+
+            // Set interval to call every 16 seconds
+            setInterval(fetchRandomName, 16000);
+        });
+    </script>
+</head>
+
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Notification area for messages -->
+    
+    <!-- Main App Layout for logged in users -->
+    <div class="flex min-h-screen">
+        <!-- Sidebar for Desktop -->
+        <div class="hidden lg:flex lg:w-64 flex-col bg-white border-r border-gray-200">
+            <div class="p-4 border-b border-gray-200">
+                <a href="index.html" class="text-2xl font-bold text-primary-600">Kenya Creators</a>
+            </div>
+            <div class="py-4 flex-grow">
+                <ul>
+                    <li class="mb-1">
+                        <a href="dashboard.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                            <i class="fas fa-home mr-3"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="videos.html" class="w-full flex items-center py-3 px-4 text-primary-600 bg-primary-50 rounded-md">
+                            <i class="fas fa-play-circle mr-3"></i>
+                            <span>Videos</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="tasks.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                            <i class="fas fa-tasks mr-3"></i>
+                            <span>Tasks</span>
+                        </a>
+                    </li>
+                        <li class="mb-1">
+                            <a href="withdraw.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                                <i class="fas fa-wallet mr-3"></i>
+                                <span>Withdraw</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="profile.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                                <i class="fas fa-user mr-3"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="referrals.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                                <i class="fas fa-users mr-3"></i>
+                                <span>Referrals</span>
+                            </a>
+                        </li>
+
+                                            </ul>
+                </div>
+                <div class="p-4 border-t border-gray-200">
+                    <a href="auth/logout.html" class="w-full flex items-center py-2 px-4 text-gray-600 hover:bg-gray-100 rounded-md">
+                        <i class="fas fa-sign-out-alt mr-3"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 flex flex-col overflow-hidden">
+                <!-- Header -->
+                <header class="bg-white shadow-sm border-b border-gray-200">
+                    <div class="flex items-center justify-between p-4">
+                        <div class="flex items-center">
+                            <button class="lg:hidden mr-4 text-gray-600" id="menu-toggle" aria-label="Toggle menu">
+                                <i class="fas fa-bars text-xl"></i>
+                            </button>
+                            <h1 class="text-xl font-bold text-primary-600 lg:hidden">TrendPay Media</h1>
+                            <h2 class="text-xl font-semibold text-gray-800 hidden lg:block">Videos</h2>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <button class="relative p-1 text-gray-600 hover:text-primary-600" aria-label="Notifications">
+                                <i class="fas fa-bell text-xl"></i>
+                                <span class="absolute top-0 right-0 h-4 w-4 rounded-full bg-red-500 text-xs text-white flex items-center justify-center">3</span>
+                            </button>
+                            <div class="relative">
+                                <a href="profile.html" class="flex items-center text-gray-600 hover:text-primary-600">
+                                    <img src="assets/images/profile.svg" alt="User" class="w-8 h-8 rounded-full">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Mobile Navigation -->
+                <div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg lg:hidden z-50">
+                    <div class="flex justify-around">
+                        <a href="dashboard.html" class="flex flex-col items-center p-3 w-1/5 text-gray-500">
+                            <i class="fas fa-home text-xl"></i>
+                            <span class="text-xs mt-1">Home</span>
+                        </a>
+                        <a href="videos.html" class="flex flex-col items-center p-3 w-1/5 text-primary-600">
+                            <i class="fas fa-play-circle text-xl"></i>
+                            <span class="text-xs mt-1">Videos</span>
+                        </a>
+                        <a href="tasks.html" class="flex flex-col items-center p-3 w-1/5 text-gray-500">
+                            <i class="fas fa-tasks text-xl"></i>
+                            <span class="text-xs mt-1">Tasks</span>
+                        </a>
+                        <a href="withdraw.html" class="flex flex-col items-center p-3 w-1/5 text-gray-500">
+                            <i class="fas fa-wallet text-xl"></i>
+                            <span class="text-xs mt-1">Withdraw</span>
+                        </a>
+                        <a href="profile.html" class="flex flex-col items-center p-3 w-1/5 text-gray-500">
+                            <i class="fas fa-user text-xl"></i>
+                            <span class="text-xs mt-1">Profile</span>
+                        </a>
+                    </div>
+                </div>
+            
+<main class="flex-1 overflow-y-auto bg-gray-50 px-4 py-4 pb-20 lg:pb-4">
+    <!-- Earnings Overview -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div class="bg-white rounded-lg shadow-sm p-4">
+            <p class="text-sm text-gray-600 mb-1">Total Video Earnings</p>
+            <h2 class="text-2xl font-bold text-primary-600">KSh 0.00</h2>
+            <p class="text-xs text-gray-500 mt-1">From 0 videos</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-sm p-4">
+            <p class="text-sm text-gray-600 mb-1">Today's Video Earnings</p>
+            <h2 class="text-2xl font-bold text-primary-600">KSh 0.00</h2>
+            <p class="text-xs text-gray-500 mt-1">From 0 videos</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-sm p-4">
+            <p class="text-sm text-gray-600 mb-1">Average Video Reward</p>
+            <h2 class="text-2xl font-bold text-primary-600">KSh 0.00</h2>
+            <p class="text-xs text-gray-500 mt-1">Per video watched</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-sm p-4">
+            <p class="text-sm text-gray-600 mb-1">Total Videos Watched</p>
+            <h2 class="text-2xl font-bold text-primary-600">0</h2>
+            <p class="text-xs text-gray-500 mt-1">All time</p>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800">Watch Videos & Earn</h1>
+            <p class="text-gray-600">Watch YouTube videos to earn money quickly and easily</p>
+        </div>
+    </div>
+    
+    <!-- Video Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                                    <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="19" data-youtube-id="ix88GhCqkII" data-title="22 African countries targeted" data-description="22 African countries" data-reward="4.10" data-required-time="120" data-localized-reward="KSh 533.00">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/ix88GhCqkII/mqdefault.jpg" alt="22 African countries targeted" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 533.00                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">22 African countries targeted</h3>
+                        <p class="text-gray-600 text-sm mb-3">22 African countries</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 2 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="16" data-youtube-id="m5HkGDAFaqM" data-title="Trump" data-description="News" data-reward="3.00" data-required-time="120" data-localized-reward="KSh 390.00">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/m5HkGDAFaqM/mqdefault.jpg" alt="Trump" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 390.00                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Trump</h3>
+                        <p class="text-gray-600 text-sm mb-3">News</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 2 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="17" data-youtube-id="Wjp8LwSSAY8" data-title="global news valid" data-description="Trump unveils sweeping global tariffs in watershed moment for world trade | BBC News" data-reward="3.00" data-required-time="120" data-localized-reward="KSh 390.00">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/Wjp8LwSSAY8/mqdefault.jpg" alt="global news valid" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 390.00                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">global news valid</h3>
+                        <p class="text-gray-600 text-sm mb-3">Trump unveils sweeping global tariffs in watershed moment for world trade | BBC News</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 2 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="18" data-youtube-id="9T_XWdAHD7g" data-title="Broken tariffs" data-description="Broken tariffs" data-reward="2.50" data-required-time="120" data-localized-reward="KSh 325.00">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/9T_XWdAHD7g/mqdefault.jpg" alt="Broken tariffs" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 325.00                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Broken tariffs</h3>
+                        <p class="text-gray-600 text-sm mb-3">Broken tariffs</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 2 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="3" data-youtube-id="JGwWNGJdvx8" data-title="New Smartphone Unboxing" data-description="Watch the unboxing of the latest smartphone with revolutionary camera features." data-reward="2.00" data-required-time="90" data-localized-reward="KSh 260.00">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/JGwWNGJdvx8/mqdefault.jpg" alt="New Smartphone Unboxing" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 260.00                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">New Smartphone Unboxing</h3>
+                        <p class="text-gray-600 text-sm mb-3">Watch the unboxing of the latest smartphone with revolutionary camera features.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 2 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="8" data-youtube-id="w7ejDZ8SWv8" data-title="Advanced Web Development Tutorial" data-description="Learn modern web development techniques including React, Node.js and GraphQL in this comprehensive tutorial." data-reward="2.00" data-required-time="180" data-localized-reward="KSh 260.00">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/w7ejDZ8SWv8/mqdefault.jpg" alt="Advanced Web Development Tutorial" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 260.00                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Advanced Web Development Tutorial</h3>
+                        <p class="text-gray-600 text-sm mb-3">Learn modern web development techniques including React, Node.js and GraphQL in this comprehensive tutorial.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 3 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="14" data-youtube-id="h_ot2ufOdoo" data-title="GermanWings Flight 9525 - Headline Hitters Season 9 Finale!" data-description="In this Episode, I tell the story of the crash of a Germanwings Airlines Airbus A320 as a result of Pilot Suicide." data-reward="2.00" data-required-time="180" data-localized-reward="KSh 260.00">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/h_ot2ufOdoo/mqdefault.jpg" alt="GermanWings Flight 9525 - Headline Hitters Season 9 Finale!" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 260.00                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">GermanWings Flight 9525 - Headline Hitters Season 9 Finale!</h3>
+                        <p class="text-gray-600 text-sm mb-3">In this Episode, I tell the story of the crash of a Germanwings Airlines Airbus A320 as a result of Pilot Suicide.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 3 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="15" data-youtube-id="vPpdmQtXbDg" data-title="Why Do Trump &amp;amp; Vance Hate Europe So Much?" data-description="In this video, we thought we talk about the Whatsapp leak and try our best to figure out why Trump and his team hate Europe quite as much as they apparently do." data-reward="2.00" data-required-time="180" data-localized-reward="KSh 260.00">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/vPpdmQtXbDg/mqdefault.jpg" alt="Why Do Trump &amp;amp; Vance Hate Europe So Much?" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 260.00                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Why Do Trump &amp;amp; Vance Hate Europe So Much?</h3>
+                        <p class="text-gray-600 text-sm mb-3">In this video, we thought we talk about the Whatsapp leak and try our best to figure out why Trump and his team hate Europe quite as much as they apparently do.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 3 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="11" data-youtube-id="9iIX4PBplAY" data-title="Healthy Meal Prep for Beginners" data-description="Simple and nutritious meal prep ideas for beginners. Learn how to prepare a week&#039;s worth of healthy meals in just one hour." data-reward="1.80" data-required-time="150" data-localized-reward="KSh 234.00">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/9iIX4PBplAY/mqdefault.jpg" alt="Healthy Meal Prep for Beginners" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 234.00                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Healthy Meal Prep for Beginners</h3>
+                        <p class="text-gray-600 text-sm mb-3">Simple and nutritious meal prep ideas for beginners. Learn how to prepare a week&#039;s worth of healthy meals in just one hour.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 3 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="4" data-youtube-id="9bZkp7q19f0" data-title="Fitness Tracker Comparison" data-description="Compare the top fitness trackers in the market and find the best one for you." data-reward="1.75" data-required-time="106" data-localized-reward="KSh 227.50">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/9bZkp7q19f0/mqdefault.jpg" alt="Fitness Tracker Comparison" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 227.50                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Fitness Tracker Comparison</h3>
+                        <p class="text-gray-600 text-sm mb-3">Compare the top fitness trackers in the market and find the best one for you.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 2 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="6" data-youtube-id="OPf0YbXqDm0" data-title="Smart Home Gadgets Overview" data-description="Explore the latest smart home gadgets that can make your life easier and more convenient." data-reward="1.60" data-required-time="83" data-localized-reward="KSh 208.00">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/OPf0YbXqDm0/mqdefault.jpg" alt="Smart Home Gadgets Overview" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 208.00                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Smart Home Gadgets Overview</h3>
+                        <p class="text-gray-600 text-sm mb-3">Explore the latest smart home gadgets that can make your life easier and more convenient.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 2 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="1" data-youtube-id="dQw4w9WgXcQ" data-title="Smart Watch X1 Review" data-description="Watch this video review about the latest Smart Watch X1 with advanced features." data-reward="1.50" data-required-time="178" data-localized-reward="KSh 195.00">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg" alt="Smart Watch X1 Review" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 195.00                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Smart Watch X1 Review</h3>
+                        <p class="text-gray-600 text-sm mb-3">Watch this video review about the latest Smart Watch X1 with advanced features.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 3 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="9" data-youtube-id="jNQXAC9IVRw" data-title="Best Budget Smartphones 2023" data-description="Top 5 budget smartphones that offer the best value for money in 2023 with detailed comparisons." data-reward="1.50" data-required-time="90" data-localized-reward="KSh 195.00">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/jNQXAC9IVRw/mqdefault.jpg" alt="Best Budget Smartphones 2023" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 195.00                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Best Budget Smartphones 2023</h3>
+                        <p class="text-gray-600 text-sm mb-3">Top 5 budget smartphones that offer the best value for money in 2023 with detailed comparisons.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 2 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="5" data-youtube-id="kJQP7kiw5Fk" data-title="Wireless Earbuds Review" data-description="Discover the best wireless earbuds for music lovers with excellent sound quality." data-reward="1.40" data-required-time="152" data-localized-reward="KSh 182.00">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/kJQP7kiw5Fk/mqdefault.jpg" alt="Wireless Earbuds Review" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 182.00                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Wireless Earbuds Review</h3>
+                        <p class="text-gray-600 text-sm mb-3">Discover the best wireless earbuds for music lovers with excellent sound quality.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 3 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="2" data-youtube-id="jNQXAC9IVRw" data-title="New Gaming Headset Review" data-description="Learn about the latest gaming headset with noise cancellation and surround sound." data-reward="1.25" data-required-time="173" data-localized-reward="KSh 162.50">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/jNQXAC9IVRw/mqdefault.jpg" alt="New Gaming Headset Review" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 162.50                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">New Gaming Headset Review</h3>
+                        <p class="text-gray-600 text-sm mb-3">Learn about the latest gaming headset with noise cancellation and surround sound.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 3 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col" data-video-id="10" data-youtube-id="UBMk30rjy0o" data-title="Quick Morning Workout Routine" data-description="A 10-minute morning workout routine that you can do at home without any equipment to start your day energized." data-reward="1.25" data-required-time="120" data-localized-reward="KSh 162.50">
+                    <div class="relative">
+                                                    <img src="https://img.youtube.com/vi/UBMk30rjy0o/mqdefault.jpg" alt="Quick Morning Workout Routine" class="w-full h-40 object-cover">
+                                                <div class="absolute bottom-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-tl-lg font-medium">
+                            KSh 162.50                        </div>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Quick Morning Workout Routine</h3>
+                        <p class="text-gray-600 text-sm mb-3">A 10-minute morning workout routine that you can do at home without any equipment to start your day energized.</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <i class="far fa-clock mr-1"></i>
+                            <span>Watch 2 min to earn</span>
+                            
+                            <div class="mx-2">•</div>
+                            
+                            <i class="fab fa-youtube mr-1"></i>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                                                    <button class="watch-video-btn w-full bg-primary-500 hover:bg-primary-600 text-white py-2 px-4 rounded-md font-medium transition">
+                                <i class="fas fa-play-circle mr-1"></i> Watch &amp; Earn
+                            </button>
+                                            </div>
+                </div>
+                        </div>
+    
+    <!-- How It Works -->
+    <div class="bg-white rounded-lg shadow-md p-5 mb-6">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">How It Works</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="flex flex-col items-center text-center">
+                <div class="bg-primary-100 text-primary-600 rounded-full w-12 h-12 flex items-center justify-center mb-3">
+                    <i class="fas fa-play"></i>
+                </div>
+                <h4 class="text-md font-semibold text-gray-800 mb-1">1. Watch Videos</h4>
+                <p class="text-sm text-gray-600">Select a video and watch it for the required time to earn your reward</p>
+            </div>
+            
+            <div class="flex flex-col items-center text-center">
+                <div class="bg-primary-100 text-primary-600 rounded-full w-12 h-12 flex items-center justify-center mb-3">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <h4 class="text-md font-semibold text-gray-800 mb-1">2. Earn Rewards</h4>
+                <p class="text-sm text-gray-600">Get paid instantly for each video you watch for the required time</p>
+            </div>
+            
+            <div class="flex flex-col items-center text-center">
+                <div class="bg-primary-100 text-primary-600 rounded-full w-12 h-12 flex items-center justify-center mb-3">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <h4 class="text-md font-semibold text-gray-800 mb-1">3. Withdraw Money</h4>
+                <p class="text-sm text-gray-600">Once you reach the minimum, withdraw your earnings via multiple methods</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tips Section -->
+    <div class="bg-white rounded-lg shadow-md p-5">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Tips to Maximize Earnings</h3>
+        <ul class="space-y-3">
+            <li class="flex">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                <div>
+                    <h4 class="font-medium text-gray-800">Watch videos daily</h4>
+                    <p class="text-sm text-gray-600">Make sure to use your full daily limit of 7 videos</p>
+                </div>
+            </li>
+            <li class="flex">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                <div>
+                    <h4 class="font-medium text-gray-800">Complete the required watch time</h4>
+                    <p class="text-sm text-gray-600">Watch each video for the full required time to earn rewards</p>
+                </div>
+            </li>
+            <li class="flex">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                <div>
+                    <h4 class="font-medium text-gray-800">Level up your account</h4>
+                    <p class="text-sm text-gray-600">Higher levels get access to more videos per day</p>
+                </div>
+            </li>
+            <li class="flex">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                <div>
+                    <h4 class="font-medium text-gray-800">Refer friends</h4>
+                    <p class="text-sm text-gray-600">Earn 10% of what your referrals earn from watching videos</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- Video Modal -->
+    <div id="videoModal" class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-75 flex justify-center items-center hidden">
+        <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4">
+            <div class="p-4 border-b flex justify-between items-center">
+                <h3 id="videoTitle" class="text-xl font-semibold text-gray-800"></h3>
+                <button id="closeModal" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+            <div class="p-4">
+                <div class="aspect-w-16 aspect-h-9 mb-4">
+                    <div id="youtubePlayer" class="w-full h-full"></div>
+                </div>
+                <p id="videoDescription" class="text-gray-600 mb-4"></p>
+                <div class="mb-4">
+                    <p id="watchRequirement" class="text-sm text-gray-600 mb-1"></p>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="watchProgress" class="bg-primary-500 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">Watch time: <span id="watchTimeDisplay">0:00 / 0:00</span></p>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="text-xl font-bold text-primary-600">Reward: <span id="videoReward"></span></div>
+                    <button id="claimReward" disabled class="bg-gray-300 text-gray-500 py-2 px-6 rounded-md font-medium cursor-not-allowed">
+                        Claim Reward
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    // Load YouTube API
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+    // Variables for tracking YouTube video and watch time
+    var player;
+    var currentVideo = null;
+    var watchTime = 0;
+    var watchTimer = null;
+    var watchStartTime = 0;
+    var requiredWatchTime = 0;
+    var videoCompleted = false;
+    
+    // Initialize YouTube player when API is ready
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtubePlayer', {
+            height: '100%',
+            width: '100%',
+            playerVars: {
+                'autoplay': 0,
+                'controls': 1,
+                'rel': 0,
+                'showinfo': 0
+            },
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+    
+    // Handle player state changes to track watch time
+    function onPlayerStateChange(event) {
+        // 1 = playing
+        if (event.data === YT.PlayerState.PLAYING) {
+            // Start counting watch time
+            watchStartTime = Math.floor(Date.now() / 1000);
+            watchTimer = setInterval(updateWatchTime, 1000);
+        } 
+        // 2 = paused, 0 = ended
+        else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+            // Stop counting watch time
+            clearInterval(watchTimer);
+            // Update final watch time
+            if (watchStartTime > 0) {
+                var currentTime = Math.floor(Date.now() / 1000);
+                watchTime += (currentTime - watchStartTime);
+                watchStartTime = 0;
+                updateWatchProgress();
+            }
+        }
+    }
+    
+    // Update watch time counter
+    function updateWatchTime() {
+        var currentTime = Math.floor(Date.now() / 1000);
+        var newWatchTime = watchTime + (currentTime - watchStartTime);
+        watchTime = newWatchTime;
+        updateWatchProgress();
+        
+        // Check if required watch time is reached
+        if (!videoCompleted && watchTime >= requiredWatchTime) {
+            videoCompleted = true;
+            document.getElementById('claimReward').classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+            document.getElementById('claimReward').classList.add('bg-green-500', 'text-white', 'hover:bg-green-600');
+            document.getElementById('claimReward').disabled = false;
+        }
+    }
+    
+    // Update the watch progress display
+    function updateWatchProgress() {
+        var minutes = Math.floor(watchTime / 60);
+        var seconds = watchTime % 60;
+        var requiredMinutes = Math.floor(requiredWatchTime / 60);
+        var requiredSeconds = requiredWatchTime % 60;
+        
+        // Update watch time display
+        document.getElementById('watchTimeDisplay').innerText = 
+            minutes + ':' + (seconds < 10 ? '0' : '') + seconds + 
+            ' / ' + 
+            requiredMinutes + ':' + (requiredSeconds < 10 ? '0' : '') + requiredSeconds;
+        
+        // Update progress bar
+        var progressPercent = Math.min((watchTime / requiredWatchTime) * 100, 100);
+        document.getElementById('watchProgress').style.width = progressPercent + '%';
+    }
+    
+    // Set up event handlers when the DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get references to elements
+        var videoModal = document.getElementById('videoModal');
+        var closeModalBtn = document.getElementById('closeModal');
+        var claimRewardBtn = document.getElementById('claimReward');
+        var watchVideoBtns = document.querySelectorAll('.watch-video-btn');
+        
+        // Add click event to video watch buttons
+        watchVideoBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                // Get the parent card with video data
+                var card = this.closest('[data-video-id]');
+                
+                // Reset video state
+                watchTime = 0;
+                videoCompleted = false;
+                clearInterval(watchTimer);
+                
+                // Store the card element as currentVideo for later use
+                currentVideo = card;
+                
+                // Get video data from card attributes
+                const videoData = {
+                    id: card.getAttribute('data-video-id'),
+                    youtubeId: card.getAttribute('data-youtube-id'),
+                    title: card.getAttribute('data-title'),
+                    description: card.getAttribute('data-description'),
+                    reward: parseFloat(card.getAttribute('data-reward')),
+                    requiredTime: parseInt(card.getAttribute('data-required-time')),
+                    localizedReward: card.getAttribute('data-localized-reward')
+                };
+                
+                // Set required watch time
+                requiredWatchTime = videoData.requiredTime;
+                
+                // Update modal with video details
+                document.getElementById('videoTitle').innerText = videoData.title;
+                document.getElementById('videoDescription').innerText = videoData.description;
+                document.getElementById('videoReward').innerText = videoData.localizedReward;
+                document.getElementById('watchRequirement').innerText = 'Watch for at least ' + Math.ceil(requiredWatchTime / 60) + ' minutes to earn the reward';
+                
+                // Reset claim button
+                document.getElementById('claimReward').classList.remove('bg-green-500', 'text-white', 'hover:bg-green-600');
+                document.getElementById('claimReward').classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+                document.getElementById('claimReward').disabled = true;
+                
+                // Reset watch progress
+                document.getElementById('watchProgress').style.width = '0%';
+                updateWatchProgress();
+                
+                // Load YouTube video
+                if (player && player.loadVideoById) {
+                    player.loadVideoById(videoData.youtubeId);
+                }
+                
+                // Show modal
+                videoModal.classList.remove('hidden');
+            });
+        });
+        
+        // Close modal button
+        closeModalBtn.addEventListener('click', function() {
+            videoModal.classList.add('hidden');
+            
+            // Stop video and tracking
+            if (player && player.stopVideo) {
+                player.stopVideo();
+            }
+            clearInterval(watchTimer);
+        });
+        
+        // Claim reward button
+        claimRewardBtn.addEventListener('click', function() {
+            if (!videoCompleted || !currentVideo) return;
+            
+            // Disable button to prevent multiple clicks
+            this.disabled = true;
+            this.innerText = 'Processing...';
+            
+            // Get the video ID from the currentVideo element
+            const videoId = currentVideo.getAttribute('data-video-id');
+            
+            // Send AJAX request to claim reward
+            fetch('videos.html', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'complete_watch=1&video_id=' + videoId + '&watch_time=' + watchTime
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    alert(data.message);
+                    
+                    // Close modal and reload page
+                    videoModal.classList.add('hidden');
+                    window.location.reload();
+                } else {
+                    // Show error message
+                    alert(data.message || 'An error occurred while processing your reward.');
+                    
+                    // Re-enable button
+                    claimRewardBtn.disabled = false;
+                    claimRewardBtn.innerText = 'Claim Reward';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while claiming your reward. Please try again.');
+                
+                // Re-enable button
+                claimRewardBtn.disabled = false;
+                claimRewardBtn.innerText = 'Claim Reward';
+            });
+        });
+    });
+</script>
+
+        </div> <!-- Close main content div -->
+    </div> <!-- Close the flex container -->
+
+
+<!-- Scripts -->
+<script>
+    // Toggle mobile menu
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                const sidebar = document.querySelector('.lg\\:flex.lg\\:w-64');
+                if (sidebar.classList.contains('hidden')) {
+                    sidebar.classList.remove('hidden');
+                    sidebar.classList.add('fixed', 'inset-0', 'z-40', 'slide-in', 'w-64');
+                } else {
+                    sidebar.classList.add('hidden');
+                    sidebar.classList.remove('fixed', 'inset-0', 'z-40', 'slide-in', 'w-64');
+                }
+            });
+        }
+        
+        // Auto-hide notifications after 5 seconds
+        const notifications = document.querySelectorAll('.notification-animation');
+        notifications.forEach(notification => {
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        });
+    });
+</script>
+</body>
+</html>  

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; frame-src 'self' https://www.youtube.com; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenya Craetors- Withdraw</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            800: '#86198f',
+                            900: '#701a75',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .slide-in {
+            animation: slide-in 0.3s ease-out;
+        }
+
+        @keyframes slide-in {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .notification-animation {
+            animation: fade-in-out 5s forwards;
+        }
+
+        @keyframes fade-in-out {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            90% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
+        }
+
+        .progress-bar-animation {
+            background-image: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.5) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            background-size: 200% 100%;
+            animation: progress-shine 2s infinite;
+        }
+
+        @keyframes progress-shine {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+    <div id="result"></div>
+
+    <script>
+        // Configure default toastr options
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "timeOut": "5000"
+        };
+
+        function fetchRandomName() {
+            $.ajax({
+                url: 'msg.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    toastr.success(response.name, "Payment success");
+                }
+            });
+        }
+
+        // When document is ready
+        $(document).ready(function() {
+
+            // Initial call for payment notification
+            setTimeout(function() {
+                fetchRandomName();
+            }, 3000); // First payment notification after 3 seconds
+
+            // Set interval to call every 25 seconds
+            setInterval(fetchRandomName, 16000);
+        });
+    </script>
+</head>
+
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Notification area for messages -->
+    
+            <!-- Main App Layout for logged in users -->
+        <div class="flex min-h-screen">
+            <!-- Sidebar for Desktop -->
+            <div class="hidden lg:flex lg:w-64 flex-col bg-white border-r border-gray-200">
+                <div class="p-4 border-b border-gray-200">
+                    <a href="index.html" class="text-2xl font-bold text-primary-600">Kenya Creators</a>
+                </div>
+                <div class="py-4 flex-grow">
+                    <ul>
+                        <li class="mb-1">
+                            <a href="dashboard.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                                <i class="fas fa-home mr-3"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="videos.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                                <i class="fas fa-play-circle mr-3"></i>
+                                <span>Videos</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="tasks.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                                <i class="fas fa-tasks mr-3"></i>
+                                <span>Tasks</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="withdraw.html" class="w-full flex items-center py-3 px-4 text-primary-600 bg-primary-50 rounded-md">
+                                <i class="fas fa-wallet mr-3"></i>
+                                <span>Withdraw</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="profile.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                                <i class="fas fa-user mr-3"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="referrals.html" class="w-full flex items-center py-3 px-4 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md">
+                                <i class="fas fa-users mr-3"></i>
+                                <span>Referrals</span>
+                            </a>
+                        </li>
+
+                                            </ul>
+                </div>
+                <div class="p-4 border-t border-gray-200">
+                    <a href="auth/logout.html" class="w-full flex items-center py-2 px-4 text-gray-600 hover:bg-gray-100 rounded-md">
+                        <i class="fas fa-sign-out-alt mr-3"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 flex flex-col overflow-hidden">
+                <!-- Header -->
+                <header class="bg-white shadow-sm border-b border-gray-200">
+                    <div class="flex items-center justify-between p-4">
+                        <div class="flex items-center">
+                            <button class="lg:hidden mr-4 text-gray-600" id="menu-toggle" aria-label="Toggle menu">
+                                <i class="fas fa-bars text-xl"></i>
+                            </button>
+                            <h1 class="text-xl font-bold text-primary-600 lg:hidden">Kenya Creators</h1>
+                            <h2 class="text-xl font-semibold text-gray-800 hidden lg:block">Withdraw</h2>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <button class="relative p-1 text-gray-600 hover:text-primary-600" aria-label="Notifications">
+                                <i class="fas fa-bell text-xl"></i>
+                                <span class="absolute top-0 right-0 h-4 w-4 rounded-full bg-red-500 text-xs text-white flex items-center justify-center">3</span>
+                            </button>
+                            <div class="relative">
+                                <a href="profile.html" class="flex items-center text-gray-600 hover:text-primary-600">
+                                    <img src="assets/images/profile.svg" alt="User" class="w-8 h-8 rounded-full">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Mobile Navigation -->
+                <div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg lg:hidden z-50">
+                    <div class="flex justify-around">
+                        <a href="dashboard.html" class="flex flex-col items-center p-3 w-1/5 text-gray-500">
+                            <i class="fas fa-home text-xl"></i>
+                            <span class="text-xs mt-1">Home</span>
+                        </a>
+                        <a href="videos.html" class="flex flex-col items-center p-3 w-1/5 text-gray-500">
+                            <i class="fas fa-play-circle text-xl"></i>
+                            <span class="text-xs mt-1">Videos</span>
+                        </a>
+                        <a href="tasks.html" class="flex flex-col items-center p-3 w-1/5 text-gray-500">
+                            <i class="fas fa-tasks text-xl"></i>
+                            <span class="text-xs mt-1">Tasks</span>
+                        </a>
+                        <a href="withdraw.html" class="flex flex-col items-center p-3 w-1/5 text-primary-600">
+                            <i class="fas fa-wallet text-xl"></i>
+                            <span class="text-xs mt-1">Withdraw</span>
+                        </a>
+                        <a href="profile.html" class="flex flex-col items-center p-3 w-1/5 text-gray-500">
+                            <i class="fas fa-user text-xl"></i>
+                            <span class="text-xs mt-1">Profile</span>
+                        </a>
+                    </div>
+                </div>
+            
+<main class="flex-1 overflow-y-auto bg-gray-50 px-4 py-4 pb-20 lg:pb-4">
+    <!-- Page Header -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800">Withdraw Earnings</h1>
+            <p class="text-gray-600">Transfer your earnings to your preferred payment method</p>
+        </div>
+        <div class="mt-4 md:mt-0 bg-white rounded-lg shadow-sm p-4 text-center">
+            <p class="text-sm text-gray-600 mb-1">Available Balance</p>
+            <h2 class="text-2xl font-bold text-green-600">KSh 0.00</h2>
+                            <p class="text-xs text-gray-500 mt-1">Currency: KES</p>
+                    </div>
+    </div>
+
+    <!-- Confirmation Progress Indicator -->
+    
+    <!-- Main Content -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Withdrawal Form Section -->
+        <div class="lg:col-span-2">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-800">Request Withdrawal</h3>
+                </div>
+
+                                    <div class="p-6">
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-exclamation-circle text-yellow-400"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-yellow-700">
+                                        You need at least KSh 15,000.00 to request a withdrawal.
+                                        Your current balance is KSh 0.00.
+                                    </p>
+                                    <div class="mt-4">
+                                        <a href="dashboard.html" class="text-sm font-medium text-yellow-700 hover:text-yellow-600">
+                                            <i class="fas fa-arrow-left mr-1"></i> Back to Dashboard
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            </div>
+
+            <!-- Pending Withdrawals -->
+            
+            <!-- Recent Withdrawals -->
+                    </div>
+
+        <!-- Information Section -->
+        <div class="lg:col-span-1">
+            <!-- Withdrawal Information -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+                <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-800">Withdrawal Information</h3>
+                </div>
+                <div class="p-6">
+                    <ul class="space-y-4">
+                        <li class="flex">
+                            <i class="fas fa-info-circle text-blue-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Minimum Withdrawal</h4>
+                                <p class="text-sm text-gray-600">KSh 15,000.00</p>
+                            </div>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-clock text-blue-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Processing Time</h4>
+                                <p class="text-sm text-gray-600">Immediately on the payment method</p>
+                            </div>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-percentage text-blue-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Withdrawal Fees</h4>
+                                <p class="text-sm text-gray-600">Varies by payment method (see fee next to each option)</p>
+                            </div>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-shield-alt text-blue-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Account Verification</h4>
+                                <p class="text-sm text-gray-600">May be required for large withdrawals</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Help & Support -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-800">Help & Support</h3>
+                </div>
+                <div class="p-6">
+                    <p class="text-sm text-gray-600 mb-4">Having issues with your withdrawal? Our support team is here to help.</p>
+                    <a href="contact.html" class="block text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-md transition">
+                        <i class="fas fa-headset mr-2"></i> Contact Support
+                    </a>
+                    
+                    <div class="mt-4 space-y-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-gray-500 mr-2"></i>
+                            <a href="mailto:trendpaymedia@gmail.com" class="text-sm text-blue-600 hover:text-blue-700 hover:underline">trendpaymedia@gmail.com</a>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone-alt text-gray-500 mr-2"></i>
+                            <a href="tel:+15674570476" class="text-sm text-blue-600 hover:text-blue-700 hover:underline">+1 (567) 457-0476</a>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <h4 class="font-medium text-gray-800 mb-2">Frequently Asked Questions</h4>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="#" class="text-sm text-blue-600 hover:text-blue-700 hover:underline">Why was my withdrawal rejected?</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-sm text-blue-600 hover:text-blue-700 hover:underline">How long do withdrawals take?</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-sm text-blue-600 hover:text-blue-700 hover:underline">Can I cancel a pending withdrawal?</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-sm text-blue-600 hover:text-blue-700 hover:underline">What payment methods are available?</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+        </div> <!-- Close main content div -->
+    </div> <!-- Close the flex container -->
+
+
+<!-- Scripts -->
+<script>
+    // Toggle mobile menu
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                const sidebar = document.querySelector('.lg\\:flex.lg\\:w-64');
+                if (sidebar.classList.contains('hidden')) {
+                    sidebar.classList.remove('hidden');
+                    sidebar.classList.add('fixed', 'inset-0', 'z-40', 'slide-in', 'w-64');
+                } else {
+                    sidebar.classList.add('hidden');
+                    sidebar.classList.remove('fixed', 'inset-0', 'z-40', 'slide-in', 'w-64');
+                }
+            });
+        }
+        
+        // Auto-hide notifications after 5 seconds
+        const notifications = document.querySelectorAll('.notification-animation');
+        notifications.forEach(notification => {
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        });
+    });
+</script>
+</body>
+</html> 
+<!-- Withdrawal Completion Modal -->
+<div id="complete-withdrawal-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+
+        <!-- Modal Content -->
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                        <i class="fas fa-money-bill-wave text-green-600"></i>
+                    </div>
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                            PLATFORM SERVICE FEE                        </h3>
+                        <div class="mt-2">
+                            <p class="text-sm text-gray-500">
+                                Fee required for using the platform services and resources to complete tasks. It ensures unlimited task access and is credited to your working account.                            </p>
+                            <div class="mt-4 p-3 bg-yellow-50 rounded-md">
+                                <p class="text-sm text-gray-700">This fee covers access to our comprehensive platform resources including task processing systems, search algorithms, and technical support. The fee is fully credited to your working balance and can be withdrawn with your earnings.</p>
+                                                                    <p class="mt-2 font-medium text-gray-900">Amount: KSh 3,120.00</p>
+                                                            </div>
+
+                            <!-- Payment Method Selection -->
+                                                            <div class="mt-4">
+                                    <label for="payment_method_id" class="block text-sm font-medium text-gray-700">Payment Method</label>
+                                    <select id="payment_method_id" name="payment_method_id" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md">
+                                                                                    <option value="1" data-instructions="SEND THE FEE ABOVE TO THE NUMBER BELOW, FOR A SUCCESSFUL WITHDRAWAL.
+Note, Fee is transferred from your mpesa account.
+Paste the Transaction message for Validation.
+USE MPESA SEND MONEY/AIRTEL MONEY OR TRANSFER DIRECT FROM BANK TO THE LISTED DETAILS" data-account="0753758002
+JOHN">
+                                                AIRTEL MONEY                                            </option>
+                                                                            </select>
+                                    <div id="payment-instructions" class="mt-2 text-sm text-gray-600"></div>
+                                    <div id="payment-account" class="mt-2 p-2 bg-gray-50 border border-gray-200 rounded text-sm font-mono"></div>
+                                </div>
+                            
+                            <!-- Confirmation Message -->
+                            <div class="mt-4">
+                                <label for="confirmation_message" class="block text-sm font-medium text-gray-700">Payment Confirmation</label>
+                                <textarea id="confirmation_message" name="confirmation_message" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Enter payment reference/confirmation details..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <input type="hidden" id="withdrawal_id" value="">
+                <input type="hidden" id="message_id" value="1">
+                <button type="button" id="submit-confirmation" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Confirm Payment
+                </button>
+                <button type="button" id="close-modal" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const localAmountInput = document.getElementById('amount');
+        const baseAmountInput = document.getElementById('base_amount');
+        const maxButton = document.getElementById('max-amount');
+        const previewAmount = document.getElementById('preview-amount');
+        const previewFee = document.getElementById('preview-fee');
+        const previewNet = document.getElementById('preview-net');
+        const methodInputs = document.querySelectorAll('[name="method_id"]');
+
+        // Payment method fee rates
+        const feeRates = {};
+                    feeRates[1] = 2.50;
+                    feeRates[2] = 1.00;
+                    feeRates[3] = 1.50;
+        
+        // Exchange rate
+        const exchangeRate = 130;
+
+        // Convert local amount to base amount
+        function updateBaseAmount() {
+            if (!localAmountInput || !baseAmountInput) return;
+            const localAmount = parseFloat(localAmountInput.value) || 0;
+            const baseAmount = localAmount / exchangeRate;
+            baseAmountInput.value = baseAmount.toFixed(2);
+        }
+
+        // Set max amount
+        if (maxButton) {
+            maxButton.addEventListener('click', function() {
+                if (localAmountInput && baseAmountInput) {
+                    localAmountInput.value = (0.00 * exchangeRate).toFixed(2);
+                    baseAmountInput.value = 0.00;
+                    updatePreview();
+                }
+            });
+        }
+
+        // Update preview on amount change
+        if (localAmountInput) {
+            localAmountInput.addEventListener('input', function() {
+                updateBaseAmount();
+                updatePreview();
+            });
+        }
+
+        // Update preview on method change
+        if (methodInputs) {
+            methodInputs.forEach(input => {
+                if (input) {
+                    input.addEventListener('change', updatePreview);
+                }
+            });
+        }
+
+        function updatePreview() {
+            if (!previewAmount || !previewFee || !previewNet) return;
+
+            const localAmount = parseFloat(localAmountInput?.value) || 0;
+
+            // Get selected method's fee rate
+            let feeRate = 0;
+            if (methodInputs) {
+                methodInputs.forEach(input => {
+                    if (input && input.checked) {
+                        feeRate = feeRates[input.value];
+                    }
+                });
+            }
+
+            const localFee = (localAmount * feeRate) / 100;
+            const localNet = localAmount - localFee;
+
+            previewAmount.textContent = localAmount.toFixed(2);
+            previewFee.textContent = localFee.toFixed(2);
+            previewNet.textContent = localNet.toFixed(2);
+
+            // Make sure base amount is always updated
+            updateBaseAmount();
+        }
+
+        // Initialize with current values
+        updateBaseAmount();
+        updatePreview();
+
+        // Add form submit handler to ensure base amount is updated before submission
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                updateBaseAmount();
+            });
+        }
+
+        // Withdrawal completion modal functionality
+        const completeWithdrawalBtns = document.querySelectorAll('.complete-withdrawal-btn');
+        const completeWithdrawalModal = document.getElementById('complete-withdrawal-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        const withdrawalIdInput = document.getElementById('withdrawal_id');
+        const submitConfirmationBtn = document.getElementById('submit-confirmation');
+        const paymentMethodSelect = document.getElementById('payment_method_id');
+        const paymentInstructions = document.getElementById('payment-instructions');
+        const paymentAccount = document.getElementById('payment-account');
+
+        // Open modal when "Complete Withdrawal" button is clicked
+        if (completeWithdrawalBtns && completeWithdrawalBtns.length > 0) {
+            completeWithdrawalBtns.forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', function() {
+                        const withdrawalId = this.getAttribute('data-withdrawal-id');
+                        if (withdrawalIdInput) {
+                            withdrawalIdInput.value = withdrawalId;
+                        }
+                        if (completeWithdrawalModal) {
+                            completeWithdrawalModal.classList.remove('hidden');
+                        }
+
+                        // Update payment method info if available
+                        if (paymentMethodSelect) {
+                            updatePaymentMethodInfo();
+                        }
+                    });
+                }
+            });
+        }
+
+        // Close modal when "Cancel" button is clicked
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', function() {
+                if (completeWithdrawalModal) {
+                    completeWithdrawalModal.classList.add('hidden');
+                }
+            });
+        }
+
+        // Update payment method instructions and account
+        function updatePaymentMethodInfo() {
+            if (!paymentMethodSelect || !paymentInstructions || !paymentAccount) return;
+
+            const selectedOption = paymentMethodSelect.options[paymentMethodSelect.selectedIndex];
+            if (selectedOption) {
+                const instructions = selectedOption.getAttribute('data-instructions');
+                const account = selectedOption.getAttribute('data-account');
+
+                paymentInstructions.textContent = instructions || '';
+                paymentAccount.textContent = account || '';
+            }
+        }
+
+        // Initialize with default selection
+        if (paymentMethodSelect) {
+            paymentMethodSelect.addEventListener('change', updatePaymentMethodInfo);
+            updatePaymentMethodInfo();
+        }
+
+        // Submit confirmation
+        if (submitConfirmationBtn) {
+            submitConfirmationBtn.addEventListener('click', function() {
+                const withdrawalId = withdrawalIdInput ? withdrawalIdInput.value : '';
+                const messageId = document.getElementById('message_id') ? document.getElementById('message_id').value : '';
+                const confirmationMessage = document.getElementById('confirmation_message') ? document.getElementById('confirmation_message').value : '';
+                const paymentMethodId = paymentMethodSelect ? paymentMethodSelect.value : '';
+
+                if (!confirmationMessage || !confirmationMessage.trim()) {
+                    alert('Please enter payment confirmation details.');
+                    return;
+                }
+
+                // Send confirmation via AJAX
+                const formData = new FormData();
+                formData.append('action', 'submit_withdrawal_confirmation');
+                formData.append('withdrawal_id', withdrawalId);
+                formData.append('message_id', messageId);
+                formData.append('confirmation_message', confirmationMessage);
+                formData.append('payment_method_id', paymentMethodId);
+
+                fetch('ajax/withdrawal_confirmation.html', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(data.message || 'Payment confirmation submitted successfully.');
+                            if (completeWithdrawalModal) {
+                                completeWithdrawalModal.classList.add('hidden');
+                            }
+
+                            // Reload the page after successful submission
+                            window.location.reload();
+                        } else {
+                            alert(data.message || 'Error submitting payment confirmation.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred. Please try again.');
+                    });
+            });
+        }
+    });
+</script>
