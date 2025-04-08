@@ -1,7 +1,7 @@
 {
     "name": "Kenya Creators",
     "short_name": "Creators",
-    "start_url": "/index.html",
+    "start_url": "/login.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#0ea5e9",
