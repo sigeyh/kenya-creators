@@ -26,233 +26,45 @@
   <link rel="apple-touch-icon" href="logo.jpg">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.ico">>
+  <link rel="icon" type="image/png" href="favicon.ico">
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Custom Tailwind Config -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              200: '#bae6fd',
-              300: '#7dd3fc',
-              400: '#38bdf8',
-              500: '#0ea5e9',
-              600: '#0284c7',
-              700: '#0369a1',
-              800: '#075985',
-              900: '#0c4a6e',
-            }
-          },
-          fontFamily: {
-            'sans': ['Poppins', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-  
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-    }
-    .auth-bg {
-      background-image: url('../assets/images/auth-bg.svg');
-      background-size: cover;
-      background-position: center;
-    }
-    
-    /* Enhanced input styling */
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-      padding: 0.75rem 1rem;
-      border: 1px solid #e5e7eb;
-      border-radius: 0.5rem;
-      width: 100%;
-      font-size: 0.875rem;
-      line-height: 1.25rem;
-      transition: all 0.15s ease-in-out;
-    }
-
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="password"]:focus {
-      border-color: #0ea5e9;
-      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
-      outline: none;
-    }
-
-    /* Input with icon */
-    .input-with-icon {
-      padding-left: 2.5rem !important;
-    }
-
-    /* Improved text contrast */
-    .text-gray-500 {
-      color: #6b7280;
-    }
-
-    .text-gray-600 {
-      color: #4b5563;
-    }
-
-    /* Enhanced form labels */
-    .form-label {
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-      color: #374151;
-    }
-
-    /* Improved background contrast for text */
-    .auth-bg .text-white {
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    }
-
-    .auth-bg .bg-white\/10 {
-      background-color: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(8px);
-    }
-
-    /* Checkbox styling */
-    input[type="checkbox"] {
-      width: 1rem;
-      height: 1rem;
-      border-radius: 0.25rem;
-      border: 1px solid #d1d5db;
-      transition: all 0.15s ease-in-out;
-    }
-
-    input[type="checkbox"]:checked {
-      background-color: #0ea5e9;
-      border-color: #0ea5e9;
-    }
-
-    input[type="checkbox"]:focus {
-      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
-    }
-  </style>
+  <!-- External CSS -->
+  <link rel="stylesheet" href="get.css">
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
-  <div class="flex min-h-screen">
-    <!-- Left side - Image -->
-    <div class="hidden md:flex md:w-1/2 auth-bg items-center justify-center">
-      <div class="p-12 max-w-md">
-        <h1 class="text-4xl font-bold text-white mb-6">TrendPay Media</h1>
-        <p class="text-white/90 text-lg mb-8">Watch videos, complete tasks, and earn money. Join our community of earners today!</p>
-        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-          <div class="flex items-center mb-4">
-            <div class="bg-white rounded-full p-2 mr-4">
-              <i class="fas fa-check text-primary-500"></i>
-            </div>
-            <p class="text-white">Access exclusive earning opportunities</p>
-          </div>
-          <div class="flex items-center mb-4">
-            <div class="bg-white rounded-full p-2 mr-4">
-              <i class="fas fa-check text-primary-500"></i>
-            </div>
-            <p class="text-white">Get paid via PayPal, M-Pesa, or bank transfer</p>
-          </div>
-          <div class="flex items-center">
-            <div class="bg-white rounded-full p-2 mr-4">
-              <i class="fas fa-check text-primary-500"></i>
-            </div>
-            <p class="text-white">Earn up to $100 per week in your spare time</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Right side - Login Form -->
-    <div class="w-full md:w-1/2 flex items-center justify-center p-6">
-      <div class="w-full max-w-md">
-        <div class="text-center mb-10">
-          <h2 class="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h2>
-          <p class="text-gray-600">Sign in to your account to continue</p>
-        </div>
-        
-        <form action="/auth/login.html" method="POST" class="space-y-6">
-          <div>
-            <label for="username" class="form-label">Username or Email</label>
-            <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <i class="fas fa-user text-gray-500"></i>
-              </div>
-              <input type="text" id="username" name="username" class="input-with-icon block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="Enter your username or email" value="">
-            </div>
-          </div>
-          
-          <div>
-            <label for="password" class="form-label">Password</label>
-            <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <i class="fas fa-lock text-gray-500"></i>
-              </div>
-              <input type="password" id="password" name="password" class="input-with-icon block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="Enter your password">
-              <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                <button type="button" id="togglePassword" class="text-gray-500 hover:text-gray-600 focus:outline-none">
-                  <i class="fas fa-eye"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          
-          <div class="flex items-center justify-between">
-            <div class="flex items-center">
-              <input type="checkbox" id="remember" name="remember" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
-              <label for="remember" class="ml-2 block text-sm text-gray-700">Remember me</label>
-            </div>
-            <div>
-              <a href="reset-password.html" class="text-sm font-medium text-primary-600 hover:text-primary-500">Forgot password?</a>
-            </div>
-          </div>
-          
-          <div>
-            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
-              Sign In
-            </button>
-          </div>
-        </form>
-        
-        <p class="mt-8 text-center text-sm text-gray-600">
-          Don't have an account? <a href="register.html" class="font-medium text-primary-600 hover:text-primary-500">Sign up</a>
-        </p>
-      </div>
-    </div>
-  </div>
-  
-  <script>
-    // Toggle password visibility
-    document.getElementById('togglePassword').addEventListener('click', function() {
-      const passwordInput = document.getElementById('password');
-      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-      passwordInput.setAttribute('type', type);
-      this.querySelector('i').classList.toggle('fa-eye');
-      this.querySelector('i').classList.toggle('fa-eye-slash');
-    });
+<body>
 
-    // Register Service Worker for PWA support
+  <div class="container">
+    <!-- Logo Section -->
+    <img src="logo.jpg" alt="Logo" class="logo">
+
+    <!-- Welcome Title -->
+    <h1>Welcome to Inua loans</h1>
+
+    <!-- Steps Section -->
+    <div class="steps">
+      <p>Follow these steps to get started:</p>
+      <ol>
+        <li>Create an account</li>
+        <li>Verify your phone number</li>
+        <li>Access your dashboard</li>
+      </ol>
+    </div>
+
+    <!-- Register Button -->
+    <a href="register.html" class="button">Get Started</a>
+  </div>
+
+  <!-- Service Worker for PWA -->
+  <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(registration => {
-          console.log('Service Worker registered with scope:', registration.scope);
-        })
-        .catch(error => {
-          console.error('Service Worker registration failed:', error);
-        });
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('Service Worker Registered!', reg))
+          .catch(err => console.log('Service Worker Registration Failed:', err));
+      });
     }
   </script>
+
 </body>
 </html>
+<script async data-explicit-opt-in="true" data-cookie-opt-in="true" data-deployment-id="dpl_5b1LwqfK8TAhDdAiQHJciFseYbKg" src="https://vercel.live/_next-live/feedback/feedback.js"></script>
