@@ -1,7 +1,7 @@
 const CACHE_NAME = 'creators-cache-v1';
 const urlsToCache = [
   '/',
-  '/index.html',
+  '/login.html',
   '/auth/login.html',
   '/styles.css',
   '/script.js'
