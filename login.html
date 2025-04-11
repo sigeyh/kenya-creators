@@ -132,10 +132,11 @@
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col">
   <div class="flex min-h-screen">
-    <!-- Left side - Image -->
+    <!-- Left Side - Image/Information -->
     <div class="hidden md:flex md:w-1/2 auth-bg items-center justify-center">
       <div class="p-12 max-w-md">
-        <h1 class="text-4xl font-bold text-white mb-6">TrendPay Media</h1>
+        <!-- Adjusted Branding to match the title -->
+        <h1 class="text-4xl font-bold text-white mb-6">Kenya Creators</h1>
         <p class="text-white/90 text-lg mb-8">Watch videos, complete tasks, and earn money. Join our community of earners today!</p>
         <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6">
           <div class="flex items-center mb-4">
@@ -160,7 +161,7 @@
       </div>
     </div>
     
-    <!-- Right side - Login Form -->
+    <!-- Right Side - Login Form -->
     <div class="w-full md:w-1/2 flex items-center justify-center p-6">
       <div class="w-full max-w-md">
         <div class="text-center mb-10">
@@ -168,14 +169,14 @@
           <p class="text-gray-600">Sign in to your account to continue</p>
         </div>
         
-        <form action="/login.html" method="POST" class="space-y-6">
+        <form action="/login" method="POST" class="space-y-6">
           <div>
             <label for="username" class="form-label">Username or Email</label>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <i class="fas fa-user text-gray-500"></i>
               </div>
-              <input type="text" id="username" name="username" class="input-with-icon block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="Enter your username or email" value="">
+              <input type="text" id="username" name="username" class="input-with-icon block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="Enter your username or email" required>
             </div>
           </div>
           
@@ -185,7 +186,7 @@
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <i class="fas fa-lock text-gray-500"></i>
               </div>
-              <input type="password" id="password" name="password" class="input-with-icon block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="Enter your password">
+              <input type="password" id="password" name="password" class="input-with-icon block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" placeholder="Enter your password" required>
               <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
                 <button type="button" id="togglePassword" class="text-gray-500 hover:text-gray-600 focus:outline-none">
                   <i class="fas fa-eye"></i>
@@ -222,19 +223,22 @@
     // Toggle password visibility
     document.getElementById('togglePassword').addEventListener('click', function() {
       const passwordInput = document.getElementById('password');
-      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-      passwordInput.setAttribute('type', type);
-      this.querySelector('i').classList.toggle('fa-eye');
-      this.querySelector('i').classList.toggle('fa-eye-slash');
+      const currentType = passwordInput.getAttribute('type');
+      const newType = currentType === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', newType);
+      // Toggle icon class between eye and eye-slash
+      const icon = this.querySelector('i');
+      icon.classList.toggle('fa-eye');
+      icon.classList.toggle('fa-eye-slash');
     });
 
     // Register Service Worker for PWA support
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js')
-        .then(registration => {
+        .then(function(registration) {
           console.log('Service Worker registered with scope:', registration.scope);
         })
-        .catch(error => {
+        .catch(function(error) {
           console.error('Service Worker registration failed:', error);
         });
     }
